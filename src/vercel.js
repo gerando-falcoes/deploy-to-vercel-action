@@ -76,7 +76,7 @@ const init = () => {
 				commandArguments = commandArguments.concat([ '--env', item ])
 			})
 		}
-		
+
 		core.info('Starting deploy with Vercel CLI')
 		const output = await exec('vercel', commandArguments, WORKING_DIRECTORY)
 		const parsed = output.match(/(?<=https?:\/\/)(.*)/g)[0]
