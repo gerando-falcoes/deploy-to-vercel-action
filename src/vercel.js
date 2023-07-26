@@ -14,6 +14,7 @@ const {
 	REF,
 	TRIM_COMMIT_MESSAGE,
 	BUILD_ENV,
+	ENV,
 	PREBUILT,
 	WORKING_DIRECTORY,
 	FORCE
@@ -70,6 +71,12 @@ const init = () => {
 			})
 		}
 
+		if (ENV) {
+			ENV.forEach((item) => {
+				commandArguments = commandArguments.concat([ '--env', item ])
+			})
+		}
+		
 		core.info('Starting deploy with Vercel CLI')
 		const output = await exec('vercel', commandArguments, WORKING_DIRECTORY)
 		const parsed = output.match(/(?<=https?:\/\/)(.*)/g)[0]
