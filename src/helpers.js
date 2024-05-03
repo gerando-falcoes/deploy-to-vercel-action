@@ -23,7 +23,7 @@ const execCmd = (command, args, cwd) => {
 		})
 
 		process.on('close', (code) => {
-			code !== 0 ? reject(new Error(stderr)) : resolve(stdout?.trim ? stdout.trim() : stdout)
+			code !== 0 ? reject(new Error(stderr)) : resolve(stdout && stdout.trim ? stdout.trim() : stdout)
 		})
 	})
 }
